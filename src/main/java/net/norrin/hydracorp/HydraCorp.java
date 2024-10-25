@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 public class HydraCorp
 {
     // Define mod id in a common place for everything to reference
-    public static final String MODID = "hydracorps";
+    public static final String MODID = "hydracorp";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
