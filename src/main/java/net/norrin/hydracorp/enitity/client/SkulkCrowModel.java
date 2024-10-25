@@ -1,4 +1,4 @@
-// Made with Blockbench 4.11.1
+package net.norrin.hydracorp.enitity.client;// Made with Blockbench 4.11.1
 // Exported for Minecraft version 1.17 or later with Mojang mappings
 // Paste this class into your mod and generate all required imports
 
@@ -27,15 +27,15 @@ public class SkulkCrowModel<T extends Entity> extends HierarchicalModel<T> {
 
 	public SkulkCrowModel(ModelPart root) {
 		this.Crow = root.getChild("Crow");
-		this.head = this.Crow.getChild("head");
-		this.flame = this.head.getChild("flame");
-		this.flame2 = this.head.getChild("flame2");
-		this.body = this.Crow.getChild("body");
-		this.L_Wing = this.body.getChild("L_Wing");
-		this.R_Wing2 = this.body.getChild("R_Wing2");
-		this.Tail = this.body.getChild("Tail");
-		this.L_Leg = this.Crow.getChild("L_Leg");
-		this.R_Leg2 = this.Crow.getChild("R_Leg2");
+		this.head = Crow.getChild("head");
+		this.flame = Crow.getChild("head").getChild("flame");
+		this.flame2 = Crow.getChild("head").getChild("flame2");
+		this.body = Crow.getChild("body");
+		this.L_Wing = Crow.getChild("body").getChild("L_Wing");
+		this.R_Wing2 = Crow.getChild("body").getChild("R_Wing2");
+		this.Tail = Crow.getChild("body").getChild("Tail");
+		this.L_Leg = Crow.getChild("L_Leg");
+		this.R_Leg2 = Crow.getChild("R_Leg2");
 	}
 
 	public static LayerDefinition createBodyLayer() {
@@ -96,5 +96,10 @@ public class SkulkCrowModel<T extends Entity> extends HierarchicalModel<T> {
 	@Override
 	public void renderToBuffer(PoseStack poseStack, VertexConsumer vertexConsumer, int packedLight, int packedOverlay, float red, float green, float blue, float alpha) {
 		Crow.render(poseStack, vertexConsumer, packedLight, packedOverlay, red, green, blue, alpha);
+	}
+
+	@Override
+	public ModelPart root() {
+		return Crow;
 	}
 }

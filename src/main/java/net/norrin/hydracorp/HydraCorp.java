@@ -1,6 +1,8 @@
 package net.norrin.hydracorp;
 
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -14,6 +16,8 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.norrin.hydracorp.enitity.ModEntities;
+import net.norrin.hydracorp.enitity.client.SkulkCrowRenderer;
 import net.norrin.hydracorp.item.ModItems;
 import org.slf4j.Logger;
 
@@ -35,11 +39,11 @@ public class HydraCorp
 
         modEventBus.addListener(this::commonSetup);
 
-        // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
 
-        // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
+
+        ModEntities.register(modEventBus);
 
 
     }
@@ -71,7 +75,7 @@ public class HydraCorp
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            EntityRenderers.register(ModEntities.CROW.get(), SkulkCrowRenderer::new);
         }
     }
 }
