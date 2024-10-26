@@ -51,7 +51,10 @@ public class SkulkCrowEntity extends ShoulderRidingEntity implements FlyingAnima
 
     public static AttributeSupplier.Builder createAttributes() {
         return ShoulderRidingEntity.createLivingAttributes()
-                .add(Attributes.MAX_HEALTH, 6.0D).add(Attributes.FLYING_SPEED, (double)0.4F).add(Attributes.MOVEMENT_SPEED, (double)0.2F);
+                .add(Attributes.FOLLOW_RANGE, 24D)
+                .add(Attributes.MAX_HEALTH, 6.0D)
+                .add(Attributes.FLYING_SPEED, (double)0.4F)
+                .add(Attributes.MOVEMENT_SPEED, (double)0.2F);
     }
 
     protected PathNavigation createNavigation(Level pLevel) {

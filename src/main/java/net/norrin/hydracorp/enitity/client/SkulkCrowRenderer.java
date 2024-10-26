@@ -4,11 +4,16 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
+import net.minecraft.client.renderer.entity.layers.ParrotOnShoulderLayer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.PlayerRideable;
+import net.minecraft.world.entity.player.Player;
 import net.norrin.hydracorp.HydraCorp;
 import net.norrin.hydracorp.enitity.custom.SkulkCrowEntity;
 
 public class SkulkCrowRenderer extends MobRenderer<SkulkCrowEntity, SkulkCrowModel<SkulkCrowEntity>> {
+
     public SkulkCrowRenderer(EntityRendererProvider.Context pContext) {
         super(pContext, new SkulkCrowModel<>(pContext.bakeLayer(ModModelLayers.CROW_LAYER)), 1f);
     }
@@ -23,7 +28,10 @@ public class SkulkCrowRenderer extends MobRenderer<SkulkCrowEntity, SkulkCrowMod
         if(pEntity.isBaby()){
             pMatrixStack.scale(.5f,.5f,.5f);
         }
-
+        if(pEntity.isPassenger()){
+            pMatrixStack.scale(.5f,.5f,.5f);
+        }
         super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
+
     }
 }
